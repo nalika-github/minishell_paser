@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:25:59 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/10/01 01:34:51 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 02:04:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,9 @@ int	expand_var(t_minishell **ms)
 
 	tk_lst = (*ms)->tk_lst;
 	dict = (*ms)->dict;
-	exit_code = malloc(sizeof(char) * 2);
+	exit_code = ft_itoa((*ms)->exit_code);
 	if (!exit_code)
 		return (exit_err(*ms, 5));
-	exit_code[0] = '0' + (*ms)->exit_code;
-	exit_code[1] = '\0';
 	while (tk_lst)
 	{
 		token = tk_lst->data;
