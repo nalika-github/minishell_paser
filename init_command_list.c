@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:52:18 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/29 00:39:47 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 00:34:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ int	init_command_list(t_minishell **ms, char *line)
 
 	ptr_line = line;
 	tk_lst = NULL;
+	index = 0;
 	while (*ptr_line)
 	{
 		index = slide_n_decide(tk_lst, ptr_line);
 		if (index == -1)
-			return (1);
+			return (exit_err(*ms, 1));
 		grab_to_lst(&tk_lst, &ptr_line, index);
 	}
-	// print_lst(tk_lst);
 	(*ms)->tk_lst = tk_lst;
 	return (0);
 }

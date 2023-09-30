@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:25:59 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/29 20:36:00 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 01:34:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static size_t	size_logic(char *tk_str, int index)
 	i = 0;
 	if (index == 0)
 	{
+		if (tk_str[i] == '$' && tk_str[i + 1] == '?')
+			return(2);
 		if(tk_str[i] == '$')
 			i++;
 		while(tk_str[i] && !ft_isquote(tk_str[i]) && tk_str[i] != '$')
@@ -110,18 +112,25 @@ int	expand_var(t_minishell **ms)
 	t_token	*token;
 	t_dict	*dict;
 	t_list	*ep_lst;
+	char	*exit_code;
 
 	tk_lst = (*ms)->tk_lst;
 	dict = (*ms)->dict;
+	exit_code = malloc(sizeof(char) * 2);
+	if (!exit_code)
+		return (exit_err(*ms, 5));
+	exit_code[0] = '0' + (*ms)->exit_code;
+	exit_code[1] = '\0';
 	while (tk_lst)
 	{
 		token = tk_lst->data;
 		ep_lst = init_expand_lst(token->str);
-		scan_n_expand(&ep_lst, dict);
+		scan_n_expand(&ep_lst, dict, exit_code);
 		quotes_remove(&ep_lst);
 		ep_lst_to_str(&token, &ep_lst);
 		ft_lstclear(&ep_lst, &free);
 		tk_lst = tk_lst->next;
 	}
+	free(exit_code);
 	return (0);
 }

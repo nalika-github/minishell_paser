@@ -25,7 +25,7 @@ BUILD_DIR		= ./build
 SRCS			=	main.c prompt.c lexer.c grab.c init_command_list.c \
 					quotes_validate.c tokenize.c paser.c scan_n_expand.c \
 					get_cmd_to_table.c get_rdr_to_table.c expand_var.c \
-					ms_get_env.c expand_in_quote.c
+					ms_get_env.c expand_in_quote.c exit_err.c
 
 OBJS			=	$(SRCS:%.c=$(BUILD_DIR)/%.o)
 

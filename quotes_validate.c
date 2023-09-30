@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:26:21 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 21:00:01 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 00:11:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	quotes_validate(t_minishell *ms)
 		if (ft_isquote(*str))
 		{
 			if (!ft_isvalide_quote(str))
-				return (2);
+				return (exit_err(ms, 2));
 		}
 		tk_lst = tk_lst->next;
 	}

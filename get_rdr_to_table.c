@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:24:16 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 21:09:03 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 01:37:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	get_rdr_to_table(t_minishell **ms)
 	t_list	*tb_lst;
 	t_list	*tk_lst;
 
+	if (!(*ms))
+		return (exit_err(*ms, 7));
 	tb_lst = (*ms)->tb_lst;
 	tk_lst = (*ms)->tk_lst;
 	while(tb_lst)

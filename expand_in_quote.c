@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 21:32:48 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/30 18:48:39 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 01:23:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static size_t	size_logic(char *ep_str)
 			size++;
 		return (size);
 	}
+	if (ep_str[size] == '$' && ep_str[size + 1] == '?')
+		return (2);
 	while (ep_str[size] && !ft_isquote(ep_str[size]))
 		size++;
 	return (size);
@@ -79,7 +81,7 @@ char	*ep_lst_again_to_str(t_list *ep_lst_again)
 	return (str);
 }
 
-void	expand_in_quote(char **ep_str, t_dict *dict)
+void	expand_in_quote(char **ep_str, t_dict *dict, char *exit_code)
 {
 	t_list	*ep_lst_again;
 	t_list	*ep_lst_again_ptr;
@@ -92,7 +94,7 @@ void	expand_in_quote(char **ep_str, t_dict *dict)
 		ep_str_again = ((char *)(ep_lst_again->data));
 		if (*ep_str_again == '$')
 		{
-			expand(&ep_str_again, dict);
+			expand(&ep_str_again, dict, exit_code);
 			ep_lst_again->data = ep_str_again;
 		}
 		ep_lst_again = ep_lst_again->next;

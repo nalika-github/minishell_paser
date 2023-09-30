@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 10:59:50 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 21:01:45 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 00:16:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	tokenize(t_minishell **ms)
 	int		tag_ctrl;
 
 	if(!ms)
-		return(1);
+		return(exit_err(*ms, 3));
 	tk_lst = (*ms)->tk_lst;
 	tag_ctrl = EMPTY;
 	(*ms)->index = -1;

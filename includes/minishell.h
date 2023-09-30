@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:45:34 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/30 17:07:47 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 01:33:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@
 # define PIPE 7
 # define APPEND 8
 
-/* tag_ctrl index define*/
+/* error msg define*/
 
-# define START 9
-# define IFBFCMD 10
-# define OFBFCMD 11
-# define HDBFCMD 12
-# define APBFCMD 13
-# define FPBFCMD 14
-# define EXPAND 14
+# define ERRINITCMDLST "minishell: error in init_command_list\n"
+# define ERRQUOTEVALIDATE "minishell: syntax error near unexpected token `unclose quotes'\n"
+# define ERRTOKENIZE "minishell: error in tokenize\n"
+# define ERRSCHARVALIDATE "minishell: syntax error near unexpected token `metachar at the end of line'\n"
+# define ERREXPANDVAR "minishell: error in expand_var'\n"
+# define ERRCMDTOTABLE "minishell: error in get_cmd_to_table'\n"
+# define ERRRDRTOTABLE "minishell: error in get_rdr_to_table'\n"
 
 enum e_prterr
 {
@@ -119,15 +119,19 @@ typedef struct	s_minishell
 {
 	t_list	*tk_lst;
 	t_list	*tb_lst;
-	char	**my_env;
 	t_dict	*dict;
 	int		index;
+	int		err_code;
 	int		exit_code;
 }				t_minishell;
 
 /*  prompt.c  */
 
 char	*prompt(void);
+
+/*  main.c  */
+
+void clear_tb_n_tk(t_minishell *ms);
 
 /*  lexer.c  */
 
@@ -167,8 +171,8 @@ int	get_rdr_to_table(t_minishell **ms);
 
 /*  scan_n_expand.c  */
 
-void	scan_n_expand(t_list **ep_lst, t_dict *dict);
-void	expand(char **ep_str, t_dict *dict);
+void	scan_n_expand(t_list **ep_lst, t_dict *dict, char *exit_code);
+void	expand(char **ep_str, t_dict *dict, char *exit_code);
 
 /*  expand_var.c  */
 
@@ -176,6 +180,10 @@ int	expand_var(t_minishell **ms);
 
 /*  expand_in_quote  */
 
-void	expand_in_quote(char **ep_str, t_dict *dict);
+void	expand_in_quote(char **ep_str, t_dict *dict, char *exit_code);
+
+/*  exit_err.c  */
+
+int	exit_err(t_minishell *ms, int index);
 
 #endif

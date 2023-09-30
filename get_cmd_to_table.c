@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:05:36 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 21:06:49 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 01:37:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	get_cmd_to_table(t_minishell **ms)
 	t_table	*table;
 	t_list	*tk_lst;
 
+	if (!(*ms))
+		return (exit_err(*ms, 6));
 	(*ms)->tb_lst = NULL;
 	tk_lst = (*ms)->tk_lst;
 	while (tk_lst)
