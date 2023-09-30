@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isvalide_quote.c                                :+:      :+:    :+:   */
+/*   ft_lstadd_front_dict.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 18:01:31 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 23:21:14 by marvin           ###   ########.fr       */
+/*   Created: 2023/09/28 23:14:16 by ptungbun          #+#    #+#             */
+/*   Updated: 2023/09/28 23:14:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libminishell.h"
 
-int	ft_isvalide_quote(char *str)
+void	ft_lstadd_front_dict(t_dict **lst, t_dict *new)
 {
-	int		i;
-	char	quote;
-
-	quote = str[0];
-	i = 1;
-	while (str[i])
-	{
-		if (str[i] == quote)
-			return (1);
-		i++;
-	}
-	return(0);
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

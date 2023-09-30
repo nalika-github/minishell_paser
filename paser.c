@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 14:52:19 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 21:02:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/28 23:45:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int	paser(t_minishell *ms)
 		return (error_exit(ms));
 	// if (validate_table(ms))
 	// 	return (error_exit(ms));
-	return (1);
+	return (0);
 }

@@ -49,20 +49,32 @@ static void	print_table(t_minishell ms)
 	}
 }
 
-static void	print_token(t_minishell ms)
-{
-	t_list	*token_lst;
-	t_token	*token;
+// static void	print_token(t_minishell ms)
+// {
+// 	t_list	*token_lst;
+// 	t_token	*token;
 
-	token_lst = ms.tk_lst;
-	printf("----token----\n");
-	while(token_lst)
+// 	token_lst = ms.tk_lst;
+// 	printf("----token----\n");
+// 	while(token_lst)
+// 	{
+// 		token = token_lst->data;
+// 		printf("token->str = %s\n", token->str);
+// 		printf("token->type = %d\n", token->type);
+// 		token_lst = token_lst->next;
+// 	}
+// }
+
+static void	print_dict(t_dict *dict)
+{
+	while (dict)
 	{
-		token = token_lst->data;
-		printf("token->str = %s\n", token->str);
-		printf("token->type = %d\n", token->type);
-		token_lst = token_lst->next;
+		printf("%s = ", dict->tmp_dict->key);
+		if (dict->tmp_dict->value)
+			printf("%s\n", dict->tmp_dict->value);
+		dict = dict->next;
 	}
+
 }
 
 int main(int ac, char **av, char **env)
@@ -71,10 +83,11 @@ int main(int ac, char **av, char **env)
 	char 		*prompt_str;
 	t_minishell	ms;
 
-	// init_minishell(&ms, env, &ac, &av);
 	(void)ac;
 	(void)av;
 	(void)env;
+	ms.dict = ms_getenv(env);
+	print_dict(ms.dict);
 	while (1)
 	{
 		prompt_str = prompt();
@@ -85,7 +98,7 @@ int main(int ac, char **av, char **env)
 		add_history(line);
 		if(lexer(line, &ms))
 			continue ;
-		print_token(ms);
+		// print_token(ms);
 		if (paser(&ms))
 		{
 			// clear_n_init_ms(&ms);

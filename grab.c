@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 01:24:09 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/17 16:58:48 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/30 19:54:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	arg_logic(char *line)
+static size_t	arg_logic(char *line)
 {
 	size_t	size;
 
@@ -22,9 +22,9 @@ size_t	arg_logic(char *line)
 	return(size);
 }
 
-size_t	quote_logic(char *line)
+static size_t	quote_logic(char *line)
 {
-	size_t		size;
+	size_t	size;
 	char	quote;
 
 	quote = line[0];
@@ -33,15 +33,16 @@ size_t	quote_logic(char *line)
 		size++;
 	if (line[size + 1])
 	{
-		while(!ft_isspace(line[size]) && line[size])
+		while(!ft_isspace(line[size]) && line[size] && \
+		!ft_ismetachar(line[size]))
 			size++;
 	}
-	if(line[size])
+	if(line[size] && !ft_ismetachar(line[size]))
 		size++;
 	return(size);
 }
 
-size_t	metachar_logic(char *line)
+static size_t	metachar_logic(char *line)
 {
 	char	meta_c;
 
@@ -53,7 +54,7 @@ size_t	metachar_logic(char *line)
 	return (0);
 }
 
-char	*grab_n_slide(char **line, size_t (*logic)(char *))
+static char	*grab_n_slide(char **line, size_t (*logic)(char *))
 {
 	size_t	size;
 	char	*str;

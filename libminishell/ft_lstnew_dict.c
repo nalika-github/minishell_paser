@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isvalide_quote.c                                :+:      :+:    :+:   */
+/*   ft_lstnew_dict.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 18:01:31 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 23:21:14 by marvin           ###   ########.fr       */
+/*   Created: 2023/09/28 23:15:36 by ptungbun          #+#    #+#             */
+/*   Updated: 2023/09/28 23:16:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libminishell.h"
 
-int	ft_isvalide_quote(char *str)
+t_dict	*ft_lstnew_dict(void *content)
 {
-	int		i;
-	char	quote;
+	t_dict	*new;
 
-	quote = str[0];
-	i = 1;
-	while (str[i])
-	{
-		if (str[i] == quote)
-			return (1);
-		i++;
-	}
-	return(0);
+	new = (t_dict *)malloc(sizeof(t_dict));
+	if (!new)
+		return (NULL);
+	new -> tmp_dict = content;
+	new -> next = NULL;
+	return (new);
 }

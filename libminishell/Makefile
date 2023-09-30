@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/22 13:50:38 by ptungbun          #+#    #+#              #
-#    Updated: 2023/08/16 14:37:27 by marvin           ###   ########.fr        #
+#    Updated: 2023/09/28 23:17:27 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CFLAGS		=	-Wall -Werror -Wextra
 
 # Note the single quotes the * exoressions. Make will incorrectly expand these otherwise.
 
-SRCS		=	ft_ismetachar.c ft_isquote.c ft_isvalide_quote.c
+SRCS		=	ft_ismetachar.c ft_isquote.c ft_isvalide_quote.c ft_lstnew_dict.c \
+				ft_lstadd_front_dict.c ft_lstadd_back_dict.c
 
 
 # Find all the .o files we want to build libft.a

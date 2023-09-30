@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:45:34 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/09/28 20:50:25 by marvin           ###   ########.fr       */
+/*   Updated: 2023/09/30 17:07:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,18 +103,6 @@ typedef struct	s_token
 	char	*str;
 }				t_token;
 
-typedef struct s_dict_value
-{
-	char *key;
-	char *value;
-} t_dict_value;
-
-typedef struct s_dict
-{
-	t_dict_value *tmp_dict;
-	struct s_dict *next;
-} t_dict;
-
 typedef struct	s_rdr
 {
 	int		type;
@@ -145,21 +133,16 @@ char	*prompt(void);
 
 int		lexer(char *line, t_minishell *env);
 
-/*  init_minishell.c  */
+/*  ms_getenv.c  */
 
-// t_minishell	init_minishell();
+t_dict	*ms_getenv(char **env);
 
 /*  init_command_list.c  */
 
-int		slide_n_decide(t_list *lst, char *line);
 int		init_command_list(t_minishell **env, char *line);
 
 /*  grab.c  */
 
-size_t	arg_logic(char *line);
-size_t	quote_logic(char *line);
-size_t	metachar_logic(char *line);
-char	*grab_n_slide(char **line, size_t (*logic)(char *));
 void	grab_to_lst(t_list **lst, char **line, int index);
 
 /*  tokenize  */
@@ -185,9 +168,14 @@ int	get_rdr_to_table(t_minishell **ms);
 /*  scan_n_expand.c  */
 
 void	scan_n_expand(t_list **ep_lst, t_dict *dict);
+void	expand(char **ep_str, t_dict *dict);
 
 /*  expand_var.c  */
 
 int	expand_var(t_minishell **ms);
+
+/*  expand_in_quote  */
+
+void	expand_in_quote(char **ep_str, t_dict *dict);
 
 #endif
