@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:45:34 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/10/01 01:33:45 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/01 16:31:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>
+# include <signal.h>
 
 /* Common Header  */
 # include "libft.h"
@@ -123,6 +124,8 @@ typedef struct	s_minishell
 	int		index;
 	int		err_code;
 	int		exit_code;
+	struct sigaction	sigint;
+	struct sigaction	sigquit;
 }				t_minishell;
 
 /*  prompt.c  */
