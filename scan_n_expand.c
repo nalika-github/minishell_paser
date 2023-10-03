@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 16:15:57 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/10/01 01:17:03 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/03 14:34:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	expand(char **ep_str, t_dict *dict, char *exit_code)
 
 	ep_str_ptr = *ep_str;
 	ep_str_ptr++;
+	if(!*ep_str_ptr || *ep_str_ptr == ' ')
+		return ;
 	if (*ep_str_ptr == '?')
 	{
 		free(*ep_str);

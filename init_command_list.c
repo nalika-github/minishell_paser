@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 13:52:18 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/10/01 00:34:27 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/03 14:07:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	init_command_list(t_minishell **ms, char *line)
 	char	*ptr_line;
 	int		index;
 
+	while(*line && *line == ' ')
+		line++;
 	ptr_line = line;
 	tk_lst = NULL;
 	index = 0;
