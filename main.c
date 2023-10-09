@@ -114,7 +114,6 @@ void clear_tb_n_tk(t_minishell *ms)
 	t_list	*tb_lst;
 	t_table	*table;
 
-	rl_clear_history();
 	ft_lstclear(&ms->tk_lst, &free);
 	tb_lst = ms->tb_lst;
 	while(tb_lst)
@@ -131,6 +130,7 @@ void clear_tb_n_tk(t_minishell *ms)
 
 void clear_minishell(t_minishell *ms)
 {
+	rl_clear_history();
 	clear_tb_n_tk(ms);
 }
 
