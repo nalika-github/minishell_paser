@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 01:24:09 by ptungbun          #+#    #+#             */
-/*   Updated: 2023/10/03 13:50:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/09 15:55:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static size_t	quote_logic(char *line)
 
 	quote = line[0];
 	size = 1;
+	if (!line[size])
+		return (size);
 	while(line[size] && line[size] != quote)
 		size++;
 	if (line[size + 1] && line[size + 1] != ' ')
@@ -39,7 +41,6 @@ static size_t	quote_logic(char *line)
 	}
 	if(line[size] && !ft_ismetachar(line[size]))
 		size++;
-	printf("size = %ld\n", size);
 	return(size);
 }
 

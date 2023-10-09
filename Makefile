@@ -14,7 +14,8 @@ NAME			= 	minishell
 LIBFT			=	libft/libft.a
 libminishell	=	libminishell/minishell.a
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra
+# CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g -fsanitize=address
 
 # Variable declaration of directory
 INCS_DIR		= ./includes
